@@ -16,58 +16,53 @@
  */
 typedef struct mdo_allocator_s mdo_allocator_t;
 
-/*! @function mdo_allocator_malloc_cb
-  @brief Allocates a block of memory from an allocator implementation.
-  @param data The userdata set by #mdo_allocator_create().
-  @param size The size of the memory to allocate.
-  @return A pointer to the freshly allocated memory, or NULL on failure.
- */
-typedef void *(*mdo_allocator_malloc_cb) (void *, size_t);
-
-/*! @function mdo_allocator_calloc_cb
-  @brief Allocates an array of elements from an allocator implementation.
-  @param data The userdata set by #mdo_allocator_create().
-  @param num The number of elements to allocate.
-  @param size The size of each element.
-  @return A pointer to the freshly allocated array, or NULL on failure.
- */
-typedef void *(*mdo_allocator_calloc_cb) (void *, size_t, size_t);
-
-/*! @function mdo_allocator_realloc_cb
-  @brief Re-allocates memory from an allocator implementation.
-  @param data The userdata set by #mdo_allocator_create().
-  @param memory A pointer to the original memory.
-  @param size The new size of the memory.
-  @return A pointer to the re-allocated memory, or NULL on failure.
- */
-typedef void *(*mdo_allocator_realloc_cb) (void *, void *, size_t);
-
-/*! @function mdo_allocator_free_cb
-  @brief Frees memory from an allocator implementation.
-  @param data The userdata set by #mdo_allocator_create().
-  @param memory The memory to free.
- */
-typedef void (*mdo_allocator_free_cb) (void *, void *);
-
-/*! @function mdo_allocator_finalize_cb
-  Callback to clean up an allocator implementation. Called by
-  #mdo_allocator_delete(). Intended to be used to free up any allocated
-  resources or otherwise clean up an allocator implementation.
-  @param data User-set data. See #mdo_allocator_create().
- */
-typedef void (*mdo_allocator_finalize_cb) (void *);
-
 /*! @typedef mdo_allocator_params_t
   A helper structure for passing allocator implementation callbacks to
   #mdo_allocator_create().
  */
 typedef struct mdo_allocator_params_s
 {
-  mdo_allocator_malloc_cb malloc_cb;
-  mdo_allocator_calloc_cb calloc_cb;
-  mdo_allocator_realloc_cb realloc_cb;
-  mdo_allocator_free_cb free_cb;
-  mdo_allocator_finalize_cb finalize_cb;
+
+  /*! @function malloc_cb
+    @brief Allocates a block of memory from an allocator implementation.
+    @param data The userdata set by #mdo_allocator_create().
+    @param size The size of the memory to allocate.
+    @return A pointer to the freshly allocated memory, or NULL on failure.
+   */
+  void *(*malloc_cb) (void *, size_t);
+
+  /*! @function calloc_cb
+    @brief Allocates an array of elements from an allocator implementation.
+    @param data The userdata set by #mdo_allocator_create().
+    @param num The number of elements to allocate.
+    @param size The size of each element.
+    @return A pointer to the freshly allocated array, or NULL on failure.
+   */
+  void *(*calloc_cb) (void *, size_t, size_t);
+
+  /*! @function realloc_cb
+    @brief Re-allocates memory from an allocator implementation.
+    @param data The userdata set by #mdo_allocator_create().
+    @param memory A pointer to the original memory.
+    @param size The new size of the memory.
+    @return A pointer to the re-allocated memory, or NULL on failure.
+   */
+  void *(*realloc_cb) (void *, void *, size_t);
+
+  /*! @function free_cb
+    @brief Frees memory from an allocator implementation.
+    @param data The userdata set by #mdo_allocator_create().
+    @param memory The memory to free.
+   */
+  void (*free_cb) (void *, void *);
+
+  /*! @function finalize_cb
+    Callback to clean up an allocator implementation. Called by
+    #mdo_allocator_delete(). Intended to be used to free up any allocated
+    resources or otherwise clean up an allocator implementation.
+    @param data User-set data. See #mdo_allocator_create().
+   */
+  void (*finalize_cb) (void *);
 } mdo_allocator_params_t;
 
 /*! @function mdo_allocator_create
