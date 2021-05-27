@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+# add the installed copy of the config input
+set_and_check (MONDRADIKO_CONFIG_IN_PATH
+  "${CMAKE_CURRENT_LIST_DIR}/mdo-config.cmake.in"
+)
+
+# add the CMake modules
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
+
+# include the main package
+include ("${CMAKE_CURRENT_LIST_DIR}/@target@.cmake")
+check_required_components (@target@)
