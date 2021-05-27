@@ -8,7 +8,7 @@ if (NOT CRITERION_FOUND)
   pkg_check_modules (CRITERION criterion>=2.0)
 endif ()
 
-function (create_test TEST_LIB TEST_NAME TEST_PATH)
+function (mondradiko_create_test TEST_LIB TEST_NAME TEST_PATH)
   set (TEST_EXECUTABLE test-${TEST_NAME})
   add_executable (${TEST_EXECUTABLE} ${TEST_PATH})
   target_link_libraries (${TEST_EXECUTABLE} ${TEST_LIB} ${CRITERION_LIBRARIES})
