@@ -25,6 +25,10 @@ typedef int mdo_result_t;
  */
 mdo_result_t mdo_result_create (mdo_log_level_t, const char *, int, bool);
 
+/*!
+ */
+void mdo_result_cleanup ();
+
 /*! @function mdo_result_success
   @param result The result to test.
   @return False if the result is an error, true if it's a success.

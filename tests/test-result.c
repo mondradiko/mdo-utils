@@ -10,13 +10,21 @@
 #define RESULT_NUM (128 * 1024)
 #define FORMAT_LEN (256)
 
-Test (result, constant_success)
+static void
+cleanup ()
+{
+  mdo_result_cleanup ();
+}
+
+Test (result, cleanup) { mdo_result_cleanup (); }
+
+Test (result, constant_success, .fini = cleanup)
 {
   int success = mdo_result_success (MDO_SUCCESS);
   cr_assert (success);
 }
 
-Test (result, create_success)
+Test (result, create_success, .fini = cleanup)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_INFO, "Success result", 0, true);
@@ -24,7 +32,7 @@ Test (result, create_success)
   cr_assert (success);
 }
 
-Test (result, create_error)
+Test (result, create_error, .fini = cleanup)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_ERROR, "Error result", 0, false);
@@ -32,7 +40,7 @@ Test (result, create_error)
   cr_assert_not (success);
 }
 
-Test (result, format)
+Test (result, format, .fini = cleanup)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_INFO, "Format: %d %d %d", 3, true);

@@ -8,18 +8,22 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define FIRST_RESULT (1)
+#define DEFAULT_CAPACITY (1024)
 
 typedef struct mdo_result_data_s
 {
   mdo_log_level_t level;
   bool success;
-  const char *brief;
+  char *brief;
   int format_num;
 } mdo_result_data_t;
 
 static mdo_result_data_t *s_result_store = NULL;
-static size_t s_result_num = 1;
-static size_t s_result_capacity = 1024;
+static size_t s_result_num = FIRST_RESULT;
+static size_t s_result_capacity = DEFAULT_CAPACITY;
 
 static mdo_result_data_t *
 mdo_result_store_get (mdo_result_t result)
@@ -73,12 +77,34 @@ mdo_result_create (mdo_log_level_t level, const char *brief, int format_num,
       return result;
     }
 
+  size_t brief_len = strlen (brief);
+  char *new_brief = malloc (brief_len + 1);
+  strcpy (new_brief, brief);
+
   new_result->level = level;
   new_result->success = success;
-  new_result->brief = brief;
+  new_result->brief = new_brief;
   new_result->format_num = format_num;
 
   return result;
+}
+
+void
+mdo_result_cleanup ()
+{
+  if (s_result_store)
+    {
+      for (size_t i = 0; i < s_result_num; i++)
+        {
+          free (s_result_store[i].brief);
+        }
+
+      free (s_result_store);
+    }
+
+  s_result_store = NULL;
+  s_result_num = FIRST_RESULT;
+  s_result_capacity = DEFAULT_CAPACITY;
 }
 
 bool
@@ -130,5 +156,5 @@ mdo_result_log (const char *file, int line, mdo_result_t result, ...)
   va_end (args);
 
   log_at (file, line, level, message);
-  return result;
+  return mdo_result_create (level, message, 0, mdo_result_success (result));
 }
