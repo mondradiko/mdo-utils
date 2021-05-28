@@ -11,36 +11,32 @@
 #define FORMAT_LEN (256)
 
 static void
-cleanup ()
-{
-  mdo_result_cleanup ();
-}
-
-Test (result, cleanup) { mdo_result_cleanup (); }
-
-Test (result, constant_success, .fini = cleanup)
+test_constant_success (void **state)
 {
   int success = mdo_result_success (MDO_SUCCESS);
-  cr_assert (success);
+  assert_true (success);
 }
 
-Test (result, create_success, .fini = cleanup)
+static void
+test_create_success (void **state)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_INFO, "Success result", 0, true);
   int success = mdo_result_success (result);
-  cr_assert (success);
+  assert_true (success);
 }
 
-Test (result, create_error, .fini = cleanup)
+static void
+test_create_error (void **state)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_ERROR, "Error result", 0, false);
   int success = mdo_result_success (result);
-  cr_assert_not (success);
+  assert_false (success);
 }
 
-Test (result, format, .fini = cleanup)
+static void
+test_format (void **state)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_INFO, "Format: %d %d %d", 3, true);
@@ -52,12 +48,13 @@ Test (result, format, .fini = cleanup)
   int result_success = mdo_result_success (result);
   int format_success = mdo_result_success (format_result);
 
-  cr_assert (result_success);
-  cr_assert (format_success);
-  cr_assert_str_eq ("Format: 24 48 96", format);
+  assert_true (result_success);
+  assert_true (format_success);
+  assert_string_equal ("Format: 24 48 96", format);
 }
 
-Test (result, log, .fini = cleanup)
+static void
+test_log (void **state)
 {
   mdo_result_t result;
   result = mdo_result_create (MDO_LOG_INFO, "Format: %d %d %d", 3, true);
@@ -72,7 +69,21 @@ Test (result, log, .fini = cleanup)
   int result_success = mdo_result_success (result);
   int log_success = mdo_result_success (logged);
 
-  cr_assert (result_success);
-  cr_assert (log_success);
-  cr_assert_str_eq ("Format: 16 32 64", format);
+  assert_true (result_success);
+  assert_true (log_success);
+  assert_string_equal ("Format: 16 32 64", format);
+}
+
+int
+main (void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test (test_constant_success),
+    cmocka_unit_test (test_create_success),
+    cmocka_unit_test (test_create_error),
+    cmocka_unit_test (test_format),
+    cmocka_unit_test (test_log),
+  };
+
+  return cmocka_run_group_tests (tests, NULL, NULL);
 }
