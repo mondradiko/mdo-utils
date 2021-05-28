@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "mondradiko/export.h"
+
 static const char *
 log_color (mdo_log_level_t level)
 {
@@ -49,7 +51,7 @@ log_prefix (mdo_log_level_t level)
     }
 }
 
-void
+MDO_EXPORT void
 log_at (const char *file, int line, mdo_log_level_t lvl, const char *fmt, ...)
 {
   FILE *stream = stdout;

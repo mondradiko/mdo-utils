@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "mondradiko/export.h"
+
 #define FIRST_RESULT (1)
 #define DEFAULT_CAPACITY (1024)
 
@@ -62,7 +64,7 @@ mdo_result_store_reserve (size_t desired_capacity)
   s_result_capacity = new_capacity;
 }
 
-mdo_result_t
+MDO_EXPORT mdo_result_t
 mdo_result_create (mdo_log_level_t level, const char *brief, int format_num,
                    bool success)
 {
@@ -89,7 +91,7 @@ mdo_result_create (mdo_log_level_t level, const char *brief, int format_num,
   return result;
 }
 
-void
+MDO_EXPORT void
 mdo_result_cleanup ()
 {
   if (s_result_store)
@@ -107,7 +109,7 @@ mdo_result_cleanup ()
   s_result_capacity = DEFAULT_CAPACITY;
 }
 
-bool
+MDO_EXPORT bool
 mdo_result_success (mdo_result_t result)
 {
   if (result == MDO_SUCCESS)
@@ -121,7 +123,7 @@ mdo_result_success (mdo_result_t result)
   return data->success;
 }
 
-mdo_result_t
+MDO_EXPORT mdo_result_t
 mdo_result_vformat (char *message, size_t capacity, mdo_result_t result,
                     va_list args)
 {
@@ -131,7 +133,7 @@ mdo_result_vformat (char *message, size_t capacity, mdo_result_t result,
   return result;
 }
 
-mdo_result_t
+MDO_EXPORT mdo_result_t
 mdo_result_format (char *message, size_t capacity, mdo_result_t result, ...)
 {
   va_list args;
@@ -142,7 +144,7 @@ mdo_result_format (char *message, size_t capacity, mdo_result_t result, ...)
   return result;
 }
 
-mdo_result_t
+MDO_EXPORT mdo_result_t
 mdo_result_log (const char *file, int line, mdo_result_t result, ...)
 {
   /* TODO(marceline-cramer): Bounds checking */

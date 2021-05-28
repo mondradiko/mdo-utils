@@ -7,31 +7,33 @@
 
 #include <stdlib.h>
 
+#include "mondradiko/export.h"
+
 struct mdo_allocator_s
 {
   void *data;
   mdo_allocator_params_t params;
 };
 
-void *
+MDO_EXPORT void *
 mdo_allocator_malloc (const mdo_allocator_t *alloc, size_t size)
 {
   return alloc->params.malloc_cb (alloc->data, size);
 }
 
-void *
+MDO_EXPORT void *
 mdo_allocator_calloc (const mdo_allocator_t *alloc, size_t num, size_t size)
 {
   return alloc->params.calloc_cb (alloc->data, num, size);
 }
 
-void *
+MDO_EXPORT void *
 mdo_allocator_realloc (const mdo_allocator_t *alloc, void *memory, size_t size)
 {
   return alloc->params.realloc_cb (alloc->data, memory, size);
 }
 
-void
+MDO_EXPORT void
 mdo_allocator_free (const mdo_allocator_t *alloc, void *memory)
 {
   alloc->params.free_cb (alloc->data, memory);
@@ -67,7 +69,7 @@ static const mdo_allocator_t s_default_allocator
                     .realloc_cb = mdo_std_realloc,
                     .free_cb = mdo_std_free } };
 
-const mdo_allocator_t *
+MDO_EXPORT const mdo_allocator_t *
 mdo_default_allocator ()
 {
   return &s_default_allocator;
