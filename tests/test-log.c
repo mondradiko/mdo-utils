@@ -7,11 +7,22 @@
 
 #include "mondradiko/log.h"
 
-Test (log, log)
+static void
+test_log (void **state)
 {
   LOG_INF ("Info log message");
   LOG_DBG ("Debug log message");
   LOG_MSG ("User log message");
   LOG_WRN ("Warning log message");
   LOG_ERR ("Error log message");
+}
+
+int
+main (void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test (test_log),
+  };
+
+  return cmocka_run_group_tests (tests, NULL, NULL);
 }

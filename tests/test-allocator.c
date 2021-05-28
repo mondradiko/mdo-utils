@@ -10,27 +10,43 @@
 #define BUF_SIZE (1024)
 #define BUF_NUM (128)
 
-Test (allocator, malloc_and_free)
+static void
+test_malloc_and_free (void **state)
 {
   const mdo_allocator_t *alloc = mdo_default_allocator ();
   void *buf_data = mdo_allocator_malloc (alloc, BUF_SIZE);
-  cr_assert_not_null (buf_data);
+  assert_non_null (buf_data);
   mdo_allocator_free (alloc, buf_data);
 }
 
-Test (allocator, calloc_and_free)
+static void
+test_calloc_and_free (void **state)
 {
   const mdo_allocator_t *alloc = mdo_default_allocator ();
   void *buf_data = mdo_allocator_calloc (alloc, BUF_NUM, BUF_SIZE);
-  cr_assert_not_null (buf_data);
+  assert_non_null (buf_data);
   mdo_allocator_free (alloc, buf_data);
 }
 
-Test (allocator, realloc_and_free)
+static void
+test_realloc_and_free (void **state)
 {
   const mdo_allocator_t *alloc = mdo_default_allocator ();
   void *buf_data = mdo_allocator_malloc (alloc, BUF_SIZE);
-  cr_assert_not_null (buf_data);
+  assert_non_null (buf_data);
   buf_data = mdo_allocator_realloc (alloc, buf_data, BUF_SIZE * BUF_NUM);
+  assert_non_null (buf_data);
   mdo_allocator_free (alloc, buf_data);
+}
+
+int
+main (void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test (test_malloc_and_free),
+    cmocka_unit_test (test_calloc_and_free),
+    cmocka_unit_test (test_realloc_and_free),
+  };
+
+  return cmocka_run_group_tests (tests, NULL, NULL);
 }
