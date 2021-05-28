@@ -23,14 +23,20 @@ set (MONDRADIKO_CONFIG_IN_PATH
   "${CMAKE_CURRENT_SOURCE_DIR}/cmake/mdo-config.cmake.in"
 )
 
-# main library
-add_library (mdo-utils SHARED
+# compile library
+add_library (mdo-utils-obj OBJECT
   src/allocator.c
   src/log.c
   src/result.c
 )
 
-# install library
+target_include_directories (mdo-utils-obj PUBLIC include)
+target_compile_options (mdo-utils-obj PRIVATE -fPIC)
+
+# make shared library
+add_library (mdo-utils SHARED $<TARGET_OBJECTS:mdo-utils-obj>)
+
+# install shared library
 include (mondradiko_install)
 mondradiko_install (mdo-utils)
 
