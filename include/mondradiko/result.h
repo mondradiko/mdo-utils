@@ -22,20 +22,21 @@ typedef int mdo_result_t;
 
 /*! @function mdo_result_create_brief
  */
-mdo_result_t mdo_result_create_brief (mdo_log_level_t, const char *, int);
+mdo_result_t mdo_result_create (mdo_log_level_t, const char *, int, int);
 
-/*! @function mdo_result_create_extended
+/*! @function mdo_result_success
+  @param result The result to test.
+  @return False if the result is an error, true if it's a success.
  */
-mdo_result_t mdo_result_create_extended (mdo_log_level_t, const char *, int,
-                                         const char *);
+int mdo_result_success (mdo_result_t);
 
 /*! @function mdo_result_vformat
  */
-mdo_result_t mdo_result_vformat (char *, size_t *, mdo_result_t, va_list);
+mdo_result_t mdo_result_vformat (char *, size_t, mdo_result_t, va_list);
 
 /*! @function mdo_result_format
  */
-mdo_result_t mdo_result_format (char *, size_t *, mdo_result_t, ...);
+mdo_result_t mdo_result_format (char *, size_t, mdo_result_t, ...);
 
 /*! @function mdo_result_log
  */

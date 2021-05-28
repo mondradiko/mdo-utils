@@ -5,32 +5,46 @@
 
 #include "test_common.h"
 
-#include <stdio.h>
-
 #include "mondradiko/result.h"
 
-#define RESULT_NUM (10)
-#define RESULT_LENGTH (256)
-#define FORMAT_NUM (10)
+#define RESULT_NUM (128 * 1024)
+#define FORMAT_LEN (256)
 
-Test (result, brief)
+Test (result, constant_success)
 {
-  char formats[RESULT_NUM][RESULT_LENGTH];
-  mdo_result_t results[RESULT_NUM];
+  int success = mdo_result_success (MDO_SUCCESS);
+  cr_assert (success);
+}
 
-  for (int result = 0; result < RESULT_NUM; result++)
-    {
-      char *format = formats[result];
-      snprintf (format, RESULT_LENGTH,
-                "Hello, world!\nResult: %d\nFormat: %%d", result);
-      results[result] = mdo_result_create_brief (MDO_LOG_MESSAGE, format, 1);
-    }
+Test (result, create_success)
+{
+  mdo_result_t result;
+  result = mdo_result_create (MDO_LOG_INFO, "Success result", 0, true);
+  int success = mdo_result_success (result);
+  cr_assert (success);
+}
 
-  for (int result = 0; result < 10; result++)
-    {
-      for (int format = 0; format < 10; format++)
-        {
-          LOG_RESULT (results[result], format);
-        }
-    }
+Test (result, create_error)
+{
+  mdo_result_t result;
+  result = mdo_result_create (MDO_LOG_ERROR, "Error result", 0, false);
+  int success = mdo_result_success (result);
+  cr_assert_not (success);
+}
+
+Test (result, format)
+{
+  mdo_result_t result;
+  result = mdo_result_create (MDO_LOG_INFO, "Format: %d %d %d", 3, true);
+
+  char format[FORMAT_LEN];
+  mdo_result_t format_result;
+  format_result = mdo_result_format (format, FORMAT_LEN, result, 24, 48, 96);
+
+  int result_success = mdo_result_success (result);
+  int format_success = mdo_result_success (format_result);
+
+  cr_assert (result_success);
+  cr_assert (format_success);
+  cr_assert_str_eq ("Format: 24 48 96", format);
 }
