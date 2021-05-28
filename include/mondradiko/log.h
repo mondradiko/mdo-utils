@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "mondradiko/export.h"
+
 #define LOG_AT(lvl, ...) log_at (__FILE__, __LINE__, lvl, __VA_ARGS__)
 #define LOG_INF(...) LOG_AT (MDO_LOG_INFO, __VA_ARGS__)
 #define LOG_DBG(...) LOG_AT (MDO_LOG_DEBUG, __VA_ARGS__)
@@ -31,4 +33,4 @@ typedef enum mdo_log_level_e
   @param level
   @param format
  */
-void log_at (const char *, int, mdo_log_level_t, const char *, ...);
+MDO_EXPORT void log_at (const char *, int, mdo_log_level_t, const char *, ...);

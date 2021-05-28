@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "mondradiko/export.h"
 #include "mondradiko/result.h"
 
 #include <stddef.h> /* for size_t */
@@ -74,8 +75,9 @@ typedef struct mdo_allocator_params_s
   See #mdo_allocator_params_t.
   @return An #mdo_result_t.
  */
-mdo_result_t mdo_allocator_create (mdo_allocator_t **, const mdo_allocator_t *,
-                                   void *, mdo_allocator_params_t *);
+MDO_EXPORT mdo_result_t mdo_allocator_create (mdo_allocator_t **,
+                                              const mdo_allocator_t *, void *,
+                                              mdo_allocator_params_t *);
 
 /*! @typedef mdo_allocator_delete
   @brief Deletes an allocator implementation. Calls the
@@ -83,14 +85,14 @@ mdo_result_t mdo_allocator_create (mdo_allocator_t **, const mdo_allocator_t *,
   implementation.
   @param alloc The allocator to delete.
  */
-void mdo_allocator_delete (mdo_allocator_t *);
+MDO_EXPORT void mdo_allocator_delete (mdo_allocator_t *);
 
 /*! @function mdo_default_allocator
   @brief Retrieves the default allocator. For now, uses stdlib malloc(),
   free(), etc.
   @return A handle to the global default allocator.
  */
-const mdo_allocator_t *mdo_default_allocator ();
+MDO_EXPORT const mdo_allocator_t *mdo_default_allocator ();
 
 /*! @function mdo_allocator_malloc
   @brief Allocates a block of memory from an allocator.
@@ -98,7 +100,7 @@ const mdo_allocator_t *mdo_default_allocator ();
   @param size The size of the memory to allocate.
   @return A pointer to the freshly allocated memory, or NULL on failure.
  */
-void *mdo_allocator_malloc (const mdo_allocator_t *, size_t);
+MDO_EXPORT void *mdo_allocator_malloc (const mdo_allocator_t *, size_t);
 
 /*! @function mdo_allocator_calloc
   @brief Allocates an array of elements from an allocator.
@@ -107,7 +109,8 @@ void *mdo_allocator_malloc (const mdo_allocator_t *, size_t);
   @param size The size of each element.
   @return A pointer to the freshly allocated array, or NULL on failure.
  */
-void *mdo_allocator_calloc (const mdo_allocator_t *, size_t, size_t);
+MDO_EXPORT void *mdo_allocator_calloc (const mdo_allocator_t *, size_t,
+                                       size_t);
 
 /*! @function mdo_allocator_realloc
   @brief Re-allocates memory from an allocator.
@@ -116,11 +119,12 @@ void *mdo_allocator_calloc (const mdo_allocator_t *, size_t, size_t);
   @param size The new size of the memory.
   @return A pointer to the re-allocated memory, or NULL on failure.
  */
-void *mdo_allocator_realloc (const mdo_allocator_t *, void *, size_t);
+MDO_EXPORT void *mdo_allocator_realloc (const mdo_allocator_t *, void *,
+                                        size_t);
 
 /*! @function mdo_allocator_free
   @brief Frees memory from an allocator.
   @param alloc The allocator to free from.
   @param memory The memory to free.
  */
-void mdo_allocator_free (const mdo_allocator_t *, void *);
+MDO_EXPORT void mdo_allocator_free (const mdo_allocator_t *, void *);
