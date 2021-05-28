@@ -56,3 +56,23 @@ Test (result, format, .fini = cleanup)
   cr_assert (format_success);
   cr_assert_str_eq ("Format: 24 48 96", format);
 }
+
+Test (result, log, .fini = cleanup)
+{
+  mdo_result_t result;
+  result = mdo_result_create (MDO_LOG_INFO, "Format: %d %d %d", 3, true);
+
+  mdo_result_t logged;
+  logged = LOG_RESULT (result, 16, 32, 64);
+
+  char format[FORMAT_LEN];
+  mdo_result_t formatted;
+  formatted = mdo_result_format (format, FORMAT_LEN, logged);
+
+  int result_success = mdo_result_success (result);
+  int log_success = mdo_result_success (logged);
+
+  cr_assert (result_success);
+  cr_assert (log_success);
+  cr_assert_str_eq ("Format: 16 32 64", format);
+}
