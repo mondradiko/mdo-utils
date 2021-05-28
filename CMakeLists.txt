@@ -31,7 +31,10 @@ add_library (mdo-utils-obj OBJECT
 )
 
 target_include_directories (mdo-utils-obj PUBLIC include)
-target_compile_options (mdo-utils-obj PRIVATE -fPIC)
+
+if (UNIX)
+  target_compile_options (mdo-utils-obj PRIVATE -fPIC)
+endif ()
 
 # make shared library
 add_library (mdo-utils SHARED $<TARGET_OBJECTS:mdo-utils-obj>)
