@@ -6,8 +6,9 @@
 
 #pragma once
 
-#include <stdarg.h> /* for va_list */
-#include <stddef.h> /* for size_t */
+#include <stdarg.h>  /* for va_list */
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
 
 #include "mondradiko/log.h"
 
@@ -22,13 +23,13 @@ typedef int mdo_result_t;
 
 /*! @function mdo_result_create_brief
  */
-mdo_result_t mdo_result_create (mdo_log_level_t, const char *, int, int);
+mdo_result_t mdo_result_create (mdo_log_level_t, const char *, int, bool);
 
 /*! @function mdo_result_success
   @param result The result to test.
   @return False if the result is an error, true if it's a success.
  */
-int mdo_result_success (mdo_result_t);
+bool mdo_result_success (mdo_result_t);
 
 /*! @function mdo_result_vformat
  */

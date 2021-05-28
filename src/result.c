@@ -12,7 +12,7 @@
 typedef struct mdo_result_data_s
 {
   mdo_log_level_t level;
-  int success;
+  bool success;
   const char *brief;
   int format_num;
 } mdo_result_data_t;
@@ -60,7 +60,7 @@ mdo_result_store_reserve (size_t desired_capacity)
 
 mdo_result_t
 mdo_result_create (mdo_log_level_t level, const char *brief, int format_num,
-                   int success)
+                   bool success)
 {
   mdo_result_t result = s_result_num++;
 
@@ -81,16 +81,16 @@ mdo_result_create (mdo_log_level_t level, const char *brief, int format_num,
   return result;
 }
 
-int
+bool
 mdo_result_success (mdo_result_t result)
 {
   if (result == MDO_SUCCESS)
-    return 1;
+    return true;
 
   mdo_result_data_t *data = mdo_result_store_get (result);
 
   if (!data)
-    return 0;
+    return false;
 
   return data->success;
 }
