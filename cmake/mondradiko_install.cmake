@@ -1,11 +1,10 @@
 # Copyright (c) 2021 Marceline Cramer
 # SPDX-License-Identifier: MIT
 
-set (MONDRADIKO_MODULES_PATH "lib/cmake/mondradiko")
-
 include (CMakePackageConfigHelpers)
 
 function (mondradiko_install target)
+  set (module-path "lib/cmake/${target}")
   set (target-config ${target}-config.cmake)
 
   # add public headers
@@ -18,7 +17,7 @@ function (mondradiko_install target)
   configure_package_config_file (
     "${MONDRADIKO_CONFIG_IN_PATH}"
     "${CMAKE_CURRENT_BINARY_DIR}/${target-config}"
-    INSTALL_DESTINATION "${MONDRADIKO_MODULES_PATH}/${target}"
+    INSTALL_DESTINATION "${module-path}/${target}"
   )
 
   # install library
@@ -30,12 +29,12 @@ function (mondradiko_install target)
   # install package config file
   install (FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${target-config}"
-    DESTINATION ${MONDRADIKO_MODULES_PATH}
+    DESTINATION ${module-path}
   )
 
   # export library
   install (EXPORT ${target}
     NAMESPACE mondradiko::
-    DESTINATION ${MONDRADIKO_MODULES_PATH}
+    DESTINATION ${module-path}
   )
 endfunction ()

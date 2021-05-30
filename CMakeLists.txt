@@ -48,7 +48,7 @@ install (FILES
   cmake/mdo-config.cmake.in
   cmake/mondradiko_create_test.cmake
   cmake/mondradiko_install.cmake
-  DESTINATION lib/cmake/mondradiko
+  DESTINATION lib/cmake/mdo-utils
 )
 
 # tests
