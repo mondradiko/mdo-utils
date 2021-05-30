@@ -3,11 +3,11 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "mondradiko/allocator.h"
+#include "allocator.h"
 
 #include <stdlib.h>
 
-#include "mondradiko/export.h"
+#include "export.h"
 
 struct mdo_allocator_s
 {

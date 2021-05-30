@@ -3,6 +3,6 @@
 
 include (mondradiko_create_test)
 
-mondradiko_create_test (mdo-utils-obj allocator test-allocator.c)
-mondradiko_create_test (mdo-utils-obj log test-log.c)
-mondradiko_create_test (mdo-utils-obj result test-result.c)
+mondradiko_create_test (${MDO_UTILS_OBJ} allocator test-allocator.c)
+mondradiko_create_test (${MDO_UTILS_OBJ} log test-log.c)
+mondradiko_create_test (${MDO_UTILS_OBJ} result test-result.c)

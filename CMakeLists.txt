@@ -17,38 +17,26 @@ endif ()
 
 # add CMake modules
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include (mondradiko_setup_library)
 
 # manually add config file input for installation
 set (MONDRADIKO_CONFIG_IN_PATH
   "${CMAKE_CURRENT_SOURCE_DIR}/cmake/mdo-config.cmake.in"
 )
 
-# compile library
-add_library (mdo-utils-obj OBJECT
+# setup library
+mondradiko_setup_library (mdo-utils MDO_UTILS_OBJ
   src/allocator.c
   src/log.c
   src/result.c
 )
 
-target_include_directories (mdo-utils-obj PUBLIC include)
-
-if (UNIX)
-  target_compile_options (mdo-utils-obj PRIVATE -fPIC)
-endif ()
-
-# make shared library
-add_library (mdo-utils SHARED $<TARGET_OBJECTS:mdo-utils-obj>)
-
-# install shared library
-include (mondradiko_install)
-mondradiko_install (mdo-utils)
-
 # install CMake modules
 install (FILES
   cmake/mdo-config.cmake.in
   cmake/mondradiko_create_test.cmake
-  cmake/mondradiko_install.cmake
-  DESTINATION lib/cmake/mondradiko
+  cmake/mondradiko_setup_library.cmake
+  DESTINATION lib/cmake/mdo-utils
 )
 
 # tests

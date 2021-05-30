@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "mondradiko/export.h"
+#include "export.h"
 
 #define LOG_AT(lvl, ...) log_at (__FILE__, __LINE__, lvl, __VA_ARGS__)
 #define LOG_INF(...) LOG_AT (MDO_LOG_INFO, __VA_ARGS__)
