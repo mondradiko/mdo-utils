@@ -39,3 +39,4 @@ function (mondradiko_install target)
     DESTINATION ${module-path}
   )
 endfunction ()
+
