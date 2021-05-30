@@ -5,7 +5,7 @@
 
 #include "test_common.h"
 
-#include "mondradiko/result.h"
+#include "result.h"
 
 #define RESULT_NUM (128 * 1024)
 #define FORMAT_LEN (256)

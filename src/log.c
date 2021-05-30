@@ -3,13 +3,13 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "mondradiko/log.h"
+#include "log.h"
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 
-#include "mondradiko/export.h"
+#include "export.h"
 
 static const char *
 log_color (mdo_log_level_t level)

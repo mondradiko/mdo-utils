@@ -5,7 +5,7 @@
 
 #include "test_common.h"
 
-#include "mondradiko/log.h"
+#include "log.h"
 
 static void
 test_log (void **state)

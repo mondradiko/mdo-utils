@@ -10,8 +10,8 @@
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for size_t */
 
-#include "mondradiko/export.h"
-#include "mondradiko/log.h"
+#include "export.h"
+#include "log.h"
 
 #define LOG_RESULT(...) mdo_result_log (__FILE__, __LINE__, __VA_ARGS__)
 

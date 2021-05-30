@@ -5,7 +5,7 @@
 
 #include "test_common.h"
 
-#include "mondradiko/allocator.h"
+#include "allocator.h"
 
 #define BUF_SIZE (1024)
 #define BUF_NUM (128)

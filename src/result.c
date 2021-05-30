@@ -3,14 +3,14 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "mondradiko/result.h"
+#include "result.h"
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "mondradiko/export.h"
+#include "export.h"
 
 #define FIRST_RESULT (1)
 #define DEFAULT_CAPACITY (1024)

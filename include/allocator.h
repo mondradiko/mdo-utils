@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "mondradiko/export.h"
-#include "mondradiko/result.h"
+#include "export.h"
+#include "result.h"
 
 #include <stddef.h> /* for size_t */
 
