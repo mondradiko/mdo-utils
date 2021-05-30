@@ -40,3 +40,24 @@ function (mondradiko_install target)
   )
 endfunction ()
 
+function (mondradiko_setup_library LIBRARY_NAME OBJECT_TARGET)
+  set (LIBRARY_OBJ "${LIBRARY_NAME}-obj")
+
+  # compile object library
+  add_library (${LIBRARY_OBJ} OBJECT ${ARGN})
+  target_include_directories (${LIBRARY_OBJ} PUBLIC include)
+
+  # enable linking on non-Windows systems
+  if (UNIX)
+    target_compile_options (${LIBRARY_OBJ} PRIVATE -fPIC)
+  endif ()
+
+  # make shared library
+  add_library (${LIBRARY_NAME} SHARED $<TARGET_OBJECTS:${LIBRARY_OBJ}>)
+
+  # install shared library
+  mondradiko_install (${LIBRARY_NAME})
+
+  # output object library name
+  set (${OBJECT_TARGET} ${LIBRARY_OBJ} PARENT_SCOPE)
+endfunction ()
