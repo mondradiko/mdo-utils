@@ -24,7 +24,8 @@ function (mondradiko_install target)
   install (TARGETS ${target} EXPORT ${target})
 
   # install headers
-  install (DIRECTORY include/mondradiko TYPE INCLUDE)
+  file (GLOB target-headers include/*.h)
+  install (FILES ${target-headers} DESTINATION include/${target})
 
   # install package config file
   install (FILES
