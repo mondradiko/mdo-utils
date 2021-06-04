@@ -44,6 +44,7 @@ outsource work for, and easy to write tests for.
 - memory allocators
 - data container structures
 - testing framework (aided by cmocka)
+- job scheduler (queues, workers, jobs, semaphores)
 - frame profiling
 - logging
 - results
