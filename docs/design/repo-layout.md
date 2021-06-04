@@ -89,11 +89,10 @@ outsource work for, and easy to write tests for.
 ### Dependencies
 Project dependencies:
 - `mdo-utils`
-
-Runtimes:
-- default: [Wasmtime](https://wasmtime.dev/)
-- alternative: [Wasmer](https://wasmer.io/)
-- embedded (Wasm within Wasm): [Wasm3](https://github.com/wasm3/wasm3)
+- runtimes:
+  * default: [Wasmtime](https://wasmtime.dev/)
+  * alternative: [Wasmer](https://wasmer.io/)
+  * embedded (Wasm within Wasm): [Wasm3](https://github.com/wasm3/wasm3)
 
 ### Services
 - type conversion (host-to-Wasm, Wasm-to-host)
@@ -165,11 +164,8 @@ over needs like abstraction or minimum-prerequisite readability.
 ## mdo-converter (needs renaming)
 
 ### Dependencies
-Project dependencies:
 - `mdo-asset-format`
 - `mdo-assets`
-
-Third-party dependencies:
 - manifest parsing: [tomlc99](https://github.com/cktan/tomlc99)
 - glTF loading: [cgltf](https://github.com/jkuhlmann/cgltf)
 - ...more libraries as needed...
@@ -185,15 +181,12 @@ Third-party dependencies:
 ## mdo-core
 
 ### Dependencies
-Project dependencies:
 - `mdo-utils`
 - `mdo-assets`
 - `mdo-asset-format`
 - `mdo-converter`
 - `mdo-renderer`
 - `mdo-ik`
-
-Third-party dependencies:
 - ECS: [EnTT](https://github.com/skypjack/entt)
 - audio: [OpenAL Soft](https://openal-soft.org/)
 - network protocol: [FlatBuffers](https://google.github.io/flatbuffers/)
@@ -201,11 +194,10 @@ Third-party dependencies:
 - game networking: [libuv](https://libuv.org)
 - IPC: [ZeroMQ](https://zeromq.org/)
 - script sockets: WebSockets (?)
-
-Display dependencies:
-- desktop: [SDL2](https://www.libsdl.org/)
-- universal XR: [OpenXR](https://www.khronos.org/OpenXR/)
-- North Star: [Project Esky](https://docs.projectnorthstar.org/software/esky)
+- displays:
+  * desktop: [SDL2](https://www.libsdl.org/)
+  * universal XR: [OpenXR](https://www.khronos.org/OpenXR/)
+  * North Star: [Project Esky](https://docs.projectnorthstar.org/software/esky)
 
 [ILLIXR](https://illixr.github.io/) can also be used as the OpenXR runtime
 for rapidly developing drivers for XR hardware that does not yet have official
