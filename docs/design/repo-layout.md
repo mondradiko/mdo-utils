@@ -146,6 +146,10 @@ over needs like abstraction or minimum-prerequisite readability.
 ### Dependencies
 - asset definitions: [FlatBuffers](https://google.github.io/flatbuffers/)
 
+### Services
+- asset format definitions
+- C helper functions to convert vector types for example?
+
 ## mdo-converter (needs renaming)
 
 ### Dependencies
