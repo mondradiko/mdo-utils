@@ -72,6 +72,18 @@ outsource work for, and easy to write tests for.
 - [Vulkan](https://www.vulkan.org/)
 - [shaderc](https://github.com/Google/shaderc)
 
+### Services
+- high-performance VR rendering engine
+- GPU (Vulkan) object helper types
+- `mdo-utils` job scheduler integration for GPU
+- camera/viewport abstractions
+- reading framebuffers from CPU
+- geometry data structure definitions
+- async geometry uploading
+- mesh draw calls
+- lights (point, spot, directional)
+- GPU-accelerated occlusion testing?
+
 ## `mdo-wasm` (needs renaming?)
 
 ### Dependencies
