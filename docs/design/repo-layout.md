@@ -37,7 +37,6 @@ outsource work for, and easy to write tests for.
 ### Dependencies
 - [libuv](https://libuv.org)
 - [cmocka](https://cmocka.org/)
-- [tomlc99](https://github.com/cktan/tomlc99)
 - [Tracy](https://github.com/wolfpld/tracy)
 
 ### Services
@@ -54,6 +53,7 @@ outsource work for, and easy to write tests for.
 ## `mdo-assets`
 
 ### Dependencies
+- `mdo-utils`
 - [libuv](https://libuv.org)
 - [lz4](https://lz4.github.io/lz4/)
 - [xxHash](https://cyan4973.github.io/xxHash/)
@@ -83,6 +83,8 @@ outsource work for, and easy to write tests for.
 - mesh draw calls
 - lights (point, spot, directional)
 - GPU-accelerated occlusion testing?
+- bones
+- blend shapes
 
 ## `mdo-wasm` (needs renaming?)
 
@@ -120,10 +122,31 @@ Project dependencies:
 - `mdo-wasm`
 
 ### Services
-- built-in "standard" humanoid IK rig
 - WebAssembly for custom IK rigs
 - de/serialization of rig state
+- controller input interface
+- animation overrides
 - concept of "avatars?"
+- spring bones?
+
+## `mdo-humanoids` (temp)
+Feeds "standard" rigs DOWNWARD into `mdo-ik`.
+
+             +---------------+---------------+---------------+
+             |      VRM      |      RPM      |      ???      |
++------------+---------------+---------------+---------------+
+| Mondradiko | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
+|   Hi-Fi    | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
+|  Webaverse | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
+|    Godot   | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
+|  Three.js  | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
+|    ???     | problem space | problem space | problem space |
++------------+---------------+---------------+---------------+
 
 ## `mdo-ui` (needs renaming)
 
