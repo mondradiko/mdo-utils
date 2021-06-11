@@ -10,11 +10,15 @@
 static void
 test_log (void **state)
 {
+  LOG_AT (MDO_LOG_ZONE, "Explicit zone log message");
+
   LOG_INF ("Info log message");
   LOG_DBG ("Debug log message");
   LOG_MSG ("User log message");
   LOG_WRN ("Warning log message");
   LOG_ERR ("Error log message");
+
+  LOG_MSG ("Multiline\nlog\nmessage");
 }
 
 int
