@@ -10,6 +10,13 @@
 #define RESULT_NUM (128 * 1024)
 #define FORMAT_LEN (256)
 
+static int
+teardown (void **state)
+{
+  mdo_result_cleanup ();
+  return 0;
+}
+
 static void
 test_constant_success (void **state)
 {
@@ -85,5 +92,5 @@ main (void)
     cmocka_unit_test (test_log),
   };
 
-  return cmocka_run_group_tests (tests, NULL, NULL);
+  return cmocka_run_group_tests (tests, NULL, teardown);
 }
