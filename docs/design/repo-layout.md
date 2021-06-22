@@ -150,7 +150,7 @@ Feeds "standard" rigs DOWNWARD into `mdo-ik`.
 +------------+---------------+---------------+---------------+
 ```
 
-## `mdo-ui` (needs renaming)
+## [Canary](https://github.com/mondradiko/canary)
 
 ### Dependencies
 - `mdo-utils`
