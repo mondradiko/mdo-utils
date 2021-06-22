@@ -132,6 +132,7 @@ Project dependencies:
 ## `mdo-humanoids` (temp)
 Feeds "standard" rigs DOWNWARD into `mdo-ik`.
 
+```
              +---------------+---------------+---------------+
              |      VRM      |      RPM      |      ???      |
 +------------+---------------+---------------+---------------+
@@ -147,8 +148,9 @@ Feeds "standard" rigs DOWNWARD into `mdo-ik`.
 +------------+---------------+---------------+---------------+
 |    ???     | problem space | problem space | problem space |
 +------------+---------------+---------------+---------------+
+```
 
-## `mdo-ui` (needs renaming)
+## [Canary](https://github.com/mondradiko/canary)
 
 ### Dependencies
 - `mdo-utils`
